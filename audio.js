@@ -55,6 +55,8 @@ const audio = document.getElementById("audio");
         audio.loop ? e.target.style.backgroundColor = "#fff2" : e.target.style.backgroundColor = "#fff0"
     })
 
+    audio.volume = 0.75
+
 
     audio.onplay = (_ => {
         bPlay.innerText = "ll"
