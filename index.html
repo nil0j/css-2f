@@ -36,17 +36,34 @@
 <div id="divider"></div>
 
 <div id="audio-player">
-    <h2>1715724737975-0.mp3</h2>
-    <span>░▒♬▒░ lainchan ░▒♬▒░</span>
+    <h2>Revizia - FUTURA.mp3</h2>
+    <span>░▒ ♬ ▒░ playing ░▒ ♬ ▒░</span>
     <br><br>
     <div class="cover">
+        <div class="helper">
+            <canvas id="wave"></canvas>
+        </div>
         <img src="static/l.gif" alt="">
+
+    </div>
+
+    <audio id="audio" src="static/futura.m4a" controls></audio>
+    <div class="controls">
+        <span>↻</span>
+        <span>|◁</span>
+        <span>◁◁</span>
+        <span class="play">ll</span>
+        <span>▷▷</span>
+        <span>▷|</span>
+        <span>⇄</span>
     </div>
 </div>
 
 <div id="divider">-</div>
 <div id="divider">.</div>
 
+<script src="https://cdn.jsdelivr.net/gh/foobar404/wave.js/dist/bundle.js"></script>
+<script src="audio.js"></script>
 
 </body>
 </html>
