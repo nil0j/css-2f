@@ -1,0 +1,53 @@
+#intro {
+    display: block;
+    margin: 0 auto;
+    font-size: 1.4em;
+    width: 26.4em;
+}
+
+:root {
+    --bg-base: #111;
+    --bg-alt: #1a1f28;
+    --fg-base: #adcaf2;
+    --fg-high: #f90;
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--fg-base);
+    text-align: center;
+    font-family: sans-serif;
+}
+
+div#divider {
+    margin: 16em 0;
+}
+
+#audio-player {
+    background-color: var(--bg-alt);
+    border-radius: 1em;
+    padding: 1em;
+    width: 60vw;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#audio-player .cover {
+    background-color: #333;
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+}
+
+#audio-player .cover img {
+    width: 100%;
+    aspect-ratio: 1;
+    margin: 0;
+    display:block;
+}
+
+h2 {
+    background-image: linear-gradient(to right, #ff9966, #ff5e62);
+    background-clip: text;
+    color: transparent;
+}
