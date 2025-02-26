@@ -29,20 +29,10 @@ const audio = document.getElementById("audio");
     const bHardForward = audioPlayer.querySelector(".bHardForward")
     const bSettings = audioPlayer.querySelector(".bSettings")
 
-    bPlay.addEventListener("click", e => {
-        switch (audio.paused) {
-            case true:
-                audio.play()
-                e.target.innerText = "ll"
-                break
-
-            case false:
-                audio.pause()
-                e.target.innerText = "▷"
-                break
-        }
+    const state = audioPlayer.querySelector(".state")
+    bPlay.addEventListener("click", _ => {
+        audio.paused ? audio.play() : audio.pause()
     })
-
 
     bForward.addEventListener("click", _ => {
         audio.playbackRate >= 2 ? _ : audio.playbackRate += 0.25
@@ -53,15 +43,26 @@ const audio = document.getElementById("audio");
     })
 
     bHardForward.addEventListener("click", _ => {
-        audio.currentTime += 5
+        audio.currentTime += 10
     })
 
     bHardBackward.addEventListener("click", _ => {
-        audio.currentTime -= 5
+        audio.currentTime -= 10
     })
 
     bLoop.addEventListener("click", e => {
         audio.loop = !audio.loop
         audio.loop ? e.target.style.backgroundColor = "#fff2" : e.target.style.backgroundColor = "#fff0"
+    })
+
+
+    audio.onplay = (_ => {
+        bPlay.innerText = "ll"
+        state.innerText = "playing"
+    })
+
+    audio.onpause = (_ => {
+        bPlay.innerText = "▷"
+        state.innerText = "paused"
     })
 }

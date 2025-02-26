@@ -1,10 +1,6 @@
-#intro {
-    display: block;
-    margin: 0 auto;
-    font-size: 1.4em;
-    width: 26.4em;
-}
-
+/*----------------*/
+/* Global section */
+/*----------------*/
 :root {
     --bg-base: #111;
     --bg-alt: #1a1f28;
@@ -18,12 +14,34 @@ body {
     color: var(--fg-base);
     text-align: center;
     font-family: sans-serif;
+    margin: 0;
+}
+
+h2 {
+    background-image: var(--fg-high);
+    background-clip: text;
+    color: transparent;
 }
 
 div#divider {
     margin: 16em 0;
 }
 
+
+/*---------------*/
+/* Intro section */
+/*---------------*/
+#intro {
+    display: block;
+    margin: 0 auto;
+    font-size: 1.4em;
+    width: 26.4em;
+}
+
+
+/*---------------*/
+/* Audio section */
+/*---------------*/
 #audio-player {
     background-color: var(--bg-alt);
     border-radius: 1em;
@@ -122,9 +140,22 @@ div#divider {
     width: 100%;
 }
 
+@media only screen and (max-width: 700px) {
+    #audio-player {
+        width: 100%;
+        border-radius: 0;
 
-h2 {
-    background-image: var(--fg-high);
-    background-clip: text;
-    color: transparent;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #audio-player .cover {
+        width: 60vw;
+        height: 60vw;
+    }
+
+    #audio-player .cover .helper canvas {
+        width: 60vw;
+        height: 60vw;
+    }
 }
