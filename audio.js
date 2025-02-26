@@ -1,9 +1,67 @@
-let audioElement = document.getElementById("audio");
-let canvasElement = document.getElementById("wave");
-let wave = new Wave(audioElement, canvasElement);
+const audioPlayer = document.getElementById("audio-player")
+const audio = document.getElementById("audio");
 
-wave.addAnimation(new wave.animations.Wave({
-    lineWidth: 10,
-    lineColor: "red",
-    count: 20
-}));
+{
+    let canvasElement = document.getElementById("wave");
+    let wave = new Wave(audio, canvasElement);
+
+    wave.addAnimation(new wave.animations.Wave({
+        lineWidth: 10,
+        lineColor: "#ff5e62",
+        count: 20
+    }));
+}
+
+{
+    const progress = audioPlayer.querySelector(".bar-top")
+    audio.addEventListener("timeupdate", function() {
+        progress.style.width = `${audio.currentTime / audio.duration * 100}%`
+    });
+}
+
+
+{
+    const bLoop = audioPlayer.querySelector(".bLoop")
+    const bHardBackward = audioPlayer.querySelector(".bHardBack")
+    const bBackward = audioPlayer.querySelector(".bBack")
+    const bPlay = audioPlayer.querySelector(".bPlay")
+    const bForward = audioPlayer.querySelector(".bForward")
+    const bHardForward = audioPlayer.querySelector(".bHardForward")
+    const bSettings = audioPlayer.querySelector(".bSettings")
+
+    bPlay.addEventListener("click", e => {
+        switch (audio.paused) {
+            case true:
+                audio.play()
+                e.target.innerText = "ll"
+                break
+
+            case false:
+                audio.pause()
+                e.target.innerText = "▷"
+                break
+        }
+    })
+
+
+    bForward.addEventListener("click", _ => {
+        audio.playbackRate >= 2 ? _ : audio.playbackRate += 0.25
+    })
+
+    bBackward.addEventListener("click", _ => {
+        audio.playbackRate <= 0.5 ? _ : audio.playbackRate -= 0.25
+    })
+
+    bHardForward.addEventListener("click", _ => {
+        audio.currentTime += 5
+    })
+
+    bHardBackward.addEventListener("click", _ => {
+        audio.currentTime -= 5
+    })
+
+    bLoop.addEventListener("click", e => {
+        audio.loop = !audio.loop
+        audio.loop ? e.target.style.backgroundColor = "#fff2" : e.target.style.backgroundColor = "#fff0"
+    })
+}

@@ -9,7 +9,8 @@
     --bg-base: #111;
     --bg-alt: #1a1f28;
     --fg-base: #adcaf2;
-    --fg-high: #f90;
+    --grey-basic: #fff2;
+    --fg-high: linear-gradient(to right, #ff9966, #ff5e62);
 }
 
 body {
@@ -33,7 +34,7 @@ div#divider {
 }
 
 #audio-player .cover {
-    background-color: #000;
+    background-color: black;
     width: 30vw;
     max-width: 300px;
     height: 30vw;
@@ -79,12 +80,51 @@ div#divider {
 }
 
 #audio-player .controls span:hover {
-    background-color: #fff2;
+    background-color: var(--grey-basic);
     cursor: pointer;
 }
 
+#audio-player .progress {
+    position: relative;
+    width: 80%;
+    height: 3em;
+    margin: 0 auto;
+}
+
+#audio-player .progress .bar-back {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    margin: 1em 0;
+    height:0.5em;
+    border-radius:0.25em;
+    background-color: var(--grey-basic);
+    width: 100%;
+}
+
+#audio-player .progress .bar-top {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    margin: 1em 0;
+    height:0.5em;
+    border-radius:0.25em;
+    background-image: var(--fg-high);
+    width: 0%;
+}
+
+#audio-player .bar-front {
+    height:0.5em;
+    border-radius:0.25em;
+    background-color: var(--grey-basic);
+    width: 100%;
+}
+
+
 h2 {
-    background-image: linear-gradient(to right, #ff9966, #ff5e62);
+    background-image: var(--fg-high);
     background-clip: text;
     color: transparent;
 }
