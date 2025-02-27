@@ -80,7 +80,7 @@ div#divider {
     50% {opacity: 0.2}
 }
 
-#audio-player .cover .helper {
+#audio-player .helper {
     position: relative;
 }
 
@@ -170,11 +170,96 @@ div#divider {
 }
 
 
-#audio-player .bar-front {
+#audio-player .progress .bar-front {
     height:0.5em;
     border-radius:0.25em;
     background-color: var(--grey-basic);
     width: 100%;
+}
+
+#audio-player .bSettings .audioControl {
+    position: absolute;
+    bottom: 3em;
+    left: 0.1em;
+
+    width: 1em;
+    padding: 0em;
+
+    height: 0em;
+    background-color: var(--bg-base);
+    border-radius: 0.5em;
+    transition: 0.2s ease-in-out;
+    transition-property: height;
+}
+
+#audio-player .bSettings:hover .audioControl {
+    height: 7em;
+    padding: 1em;
+    padding-bottom: 0em;
+}
+
+#audio-player .bSettings .audioControl .bar-back {
+    position: absolute;
+    bottom: 0em;
+    left: 0.1em;
+
+    width: 0.3em;
+    height: calc(100% - 1em);
+
+    margin: 1.25em;
+    margin-bottom:0em;
+
+    transition: 0.2s ease-in-out;
+    border-radius:0.25em;
+
+    background-color: var(--grey-basic);
+}
+
+#audio-player .bSettings .audioControl:hover .bar-top,
+#audio-player .bSettings .audioControl:hover .bar-back
+{
+    left: 0em;
+    width: 0.5em;
+}
+
+#audio-player .bSettings .audioControl .bar-top {
+    position: absolute;
+    bottom: 0em;
+    left: 0.1em;
+
+    width: 0.3em;
+    height: calc(75% - 1em);
+
+    margin: 1.25em;
+    margin-bottom:0em;
+
+    transition: 0.2s ease-in-out;
+    border-radius:0.25em;
+
+    background-image: var(--fg-high);
+}
+
+#audio-player .bSettings .audioControl .bar-top .ball {
+    position: absolute;
+    bottom: 0;
+    left: 0em;
+
+    background-image: var(--fg-high);
+    width: 0em;
+    height: 0em;
+    border-radius: 50%;
+    visibility: hidden;
+
+    transition: 0.1s ease-in-out;
+    transition-property: height, width, top;
+}
+
+#audio-player .bSettings .audioControl:hover .bar-top .ball {
+    bottom: 0em;
+    left: -0.25em;
+    width: 1em;
+    height: 1em;
+    visibility: visible;
 }
 
 @media only screen and (max-width: 700px) {
