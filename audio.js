@@ -2,14 +2,16 @@ const audioPlayer = document.getElementById("audio-player")
 const audio = document.getElementById("audio");
 
 {
-    let canvasElement = document.getElementById("wave");
-    let wave = new Wave(audio, canvasElement);
+    if (typeof Wave != typeof undefined) {
+        let canvasElement = document.getElementById("wave");
+        let wave = new Wave(audio, canvasElement);
 
-    wave.addAnimation(new wave.animations.Wave({
-        lineWidth: 10,
-        lineColor: "#ff5e62",
-        count: 20
-    }));
+        wave.addAnimation(new wave.animations.Wave({
+            lineWidth: 10,
+            lineColor: "#ff5e62",
+            count: 20
+        }));
+    }
 }
 
 {
@@ -58,13 +60,51 @@ const audio = document.getElementById("audio");
     audio.volume = 0.75
 
 
+
+    const decos = [
+        audioPlayer.querySelectorAll(".deco2"),
+        audioPlayer.querySelectorAll(".deco3"),
+        audioPlayer.querySelectorAll(".deco4"),
+    ]
+
     audio.onplay = (_ => {
         bPlay.innerText = "ll"
         state.innerText = "playing"
+
+        let delay = 0
+        decos.map(deco => {
+            delay += 0.3
+            Array.from(deco).map(d => { d.style.animationDelay = `${delay}s` })
+        })
     })
 
     audio.onpause = (_ => {
         bPlay.innerText = "▷"
         state.innerText = "paused"
+        decos.map(deco => { Array.from(deco).map(d => { d.style.animationDelay = "0s" }) })
     })
+}
+
+
+{
+    const progress = audioPlayer.querySelector(".progress")
+    progress.onclick = e => {
+        let mousePos = e.pageX - progress.getBoundingClientRect().x
+        audio.currentTime = audio.duration * mousePos / progress.offsetWidth
+    }
+    
+    const ball = progress.querySelector(".ball")
+    let mouseover = false
+
+    progress.onmouseover = e => {
+        mouseover = true
+    }
+
+    window.onmousemove = e => {
+        if (mouseover) {
+            let newPos = e.pageX - progress.getBoundingClientRect().x
+            newPos -= ball.getBoundingClientRect().width / 2
+            ball.style.left = `${newPos}px`
+        }
+    }
 }

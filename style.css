@@ -70,6 +70,16 @@ div#divider {
     position: relative;
 }
 
+#audio-player .deco {
+    animation: trans1 1.5s infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes trans1 {
+    0% {opacity: 1}
+    50% {opacity: 0.2}
+}
+
 #audio-player .cover .helper {
     position: relative;
 }
@@ -107,31 +117,63 @@ div#divider {
     width: 80%;
     height: 3em;
     margin: 0 auto;
+
+    cursor: pointer;
+}
+
+#audio-player .progress div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    margin: 1.1em 0;
+    height:0.3em;
+    border-radius:0.25em;
+
+    transition: 0.2s ease;
+}
+
+#audio-player .progress:hover div {
+    margin: 1em 0;
+    height: 0.5em;
 }
 
 #audio-player .progress .bar-back {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-
-    margin: 1em 0;
-    height:0.5em;
-    border-radius:0.25em;
-    background-color: var(--grey-basic);
     width: 100%;
+    background-color: var(--grey-basic);
 }
 
 #audio-player .progress .bar-top {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-
-    margin: 1em 0;
-    height:0.5em;
-    border-radius:0.25em;
-    background-image: var(--fg-high);
     width: 0%;
+    background-image: var(--fg-high);
 }
+
+#audio-player .progress .bar-top .ball {
+    position: absolute;
+    top: -0.95em;
+    left: 0;
+
+    background-image: var(--fg-high);
+    width: 0em;
+    height: 0em;
+    border-radius: 50%;
+
+    transition: 0.1s ease-in;
+    transition-property: height, width, top;
+    /*
+    transition: 0s;
+    */
+    
+    visibility: hidden;
+}
+
+#audio-player .progress:hover .bar-top .ball {
+    top: -1.25em;
+    width: 1em;
+    height: 1em;
+    visibility: visible;
+}
+
 
 #audio-player .bar-front {
     height:0.5em;
