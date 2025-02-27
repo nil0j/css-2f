@@ -1,6 +1,9 @@
 const audioPlayer = document.getElementById("audio-player")
 const audio = document.getElementById("audio");
 
+//----------//
+// Waveform //
+//----------//
 {
     if (typeof Wave != typeof undefined) {
         let canvasElement = document.getElementById("wave");
@@ -8,21 +11,57 @@ const audio = document.getElementById("audio");
 
         wave.addAnimation(new wave.animations.Wave({
             lineWidth: 10,
-            lineColor: "#ff5e62",
+            lineColor: {gradient: ["#ff9966", "#ff5e62"]},
             count: 20
         }));
     }
 }
 
+
+//-------------//
+// Progressbar //
+//-------------//
 {
-    const progress = audioPlayer.querySelector(".bar-top")
+    const progress = audioPlayer.querySelector(".progress")
+    const barTop = progress.querySelector(".bar-top")
     audio.addEventListener("timeupdate", function() {
-        progress.style.width = `${audio.currentTime / audio.duration * 100}%`
+        barTop.style.width = `${audio.currentTime / audio.duration * 100}%`
     });
+
+    progress.onclick = e => {
+        let mousePos = e.pageX - progress.getBoundingClientRect().x
+        audio.currentTime = audio.duration * mousePos / progress.offsetWidth
+    }
+
+    const ball = progress.querySelector(".ball")
+    let mouseover = false
+
+    progress.onmouseenter = _ => {
+        mouseover = true
+    }
+
+    progress.onmouseleave = _ => {
+        mouseover = false
+    }
+
+    window.onmousemove = e => {
+        if (mouseover) {
+            let newPos = e.pageX - progress.getBoundingClientRect().x
+            newPos -= ball.getBoundingClientRect().width / 2
+            ball.style.left = `${newPos}px`
+        }
+    }
 }
 
 
+//----------//
+// controls //
+//----------//
 {
+    audioPlayer.querySelector(".controls").onmousedown = e => {
+        e.preventDefault()
+    }
+
     const bLoop = audioPlayer.querySelector(".bLoop")
     const bHardBackward = audioPlayer.querySelector(".bHardBack")
     const bBackward = audioPlayer.querySelector(".bBack")
@@ -37,19 +76,23 @@ const audio = document.getElementById("audio");
     })
 
     bForward.addEventListener("click", _ => {
-        audio.playbackRate >= 2 ? _ : audio.playbackRate += 0.25
-    })
-
-    bBackward.addEventListener("click", _ => {
-        audio.playbackRate <= 0.5 ? _ : audio.playbackRate -= 0.25
-    })
-
-    bHardForward.addEventListener("click", _ => {
+        // audio.playbackRate >= 2 ? _ : audio.playbackRate += 0.25
         audio.currentTime += 10
     })
 
-    bHardBackward.addEventListener("click", _ => {
+    bBackward.addEventListener("click", _ => {
+        // audio.playbackRate <= 0.5 ? _ : audio.playbackRate -= 0.25
         audio.currentTime -= 10
+    })
+
+    bHardForward.addEventListener("click", _ => {
+        // audio.currentTime += 10
+        audio.currentTime = audio.duration
+    })
+
+    bHardBackward.addEventListener("click", _ => {
+        // audio.currentTime -= 10
+        audio.currentTime = 0
     })
 
     bLoop.addEventListener("click", e => {
@@ -83,28 +126,4 @@ const audio = document.getElementById("audio");
         state.innerText = "paused"
         decos.map(deco => { Array.from(deco).map(d => { d.style.animationDelay = "0s" }) })
     })
-}
-
-
-{
-    const progress = audioPlayer.querySelector(".progress")
-    progress.onclick = e => {
-        let mousePos = e.pageX - progress.getBoundingClientRect().x
-        audio.currentTime = audio.duration * mousePos / progress.offsetWidth
-    }
-    
-    const ball = progress.querySelector(".ball")
-    let mouseover = false
-
-    progress.onmouseover = e => {
-        mouseover = true
-    }
-
-    window.onmousemove = e => {
-        if (mouseover) {
-            let newPos = e.pageX - progress.getBoundingClientRect().x
-            newPos -= ball.getBoundingClientRect().width / 2
-            ball.style.left = `${newPos}px`
-        }
-    }
 }

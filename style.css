@@ -115,8 +115,8 @@ div#divider {
 #audio-player .progress {
     position: relative;
     width: 80%;
-    height: 3em;
-    margin: 0 auto;
+    height: 1em;
+    margin: 1em auto;
 
     cursor: pointer;
 }
@@ -126,7 +126,7 @@ div#divider {
     top: 0;
     bottom: 0;
 
-    margin: 1.1em 0;
+    margin: 0.35em 0;
     height:0.3em;
     border-radius:0.25em;
 
@@ -134,7 +134,7 @@ div#divider {
 }
 
 #audio-player .progress:hover div {
-    margin: 1em 0;
+    margin: 0.25em 0;
     height: 0.5em;
 }
 
@@ -150,25 +150,20 @@ div#divider {
 
 #audio-player .progress .bar-top .ball {
     position: absolute;
-    top: -0.95em;
+    top: -0.1em;
     left: 0;
 
     background-image: var(--fg-high);
     width: 0em;
     height: 0em;
     border-radius: 50%;
-
-    transition: 0.1s ease-in;
-    transition-property: height, width, top;
-    /*
-    transition: 0s;
-    */
-    
     visibility: hidden;
+
+    transition-property: height, width, top;
 }
 
 #audio-player .progress:hover .bar-top .ball {
-    top: -1.25em;
+    top: -0.5em;
     width: 1em;
     height: 1em;
     visibility: visible;
