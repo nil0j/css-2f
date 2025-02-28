@@ -198,7 +198,7 @@ div#divider {
     padding-bottom: 0em;
 }
 
-#audio-player .bSettings.triggered {
+#audio-player .triggered {
     background-color: var(--grey-basic);
 }
 
