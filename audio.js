@@ -11,7 +11,7 @@ const audio = document.getElementById("audio");
 
         wave.addAnimation(new wave.animations.Wave({
             lineWidth: 10,
-            lineColor: {gradient: ["#ff9966", "#ff5e62"]},
+            lineColor: { gradient: ["#ff9966", "#ff5e62"] },
             count: 20
         }));
     }
@@ -34,18 +34,18 @@ const audio = document.getElementById("audio");
     }
 
     const ball = progress.querySelector(".ball")
-    let mouseover = false
+    let mouseOverProgress = false
 
     progress.onmouseenter = _ => {
-        mouseover = true
+        mouseOverProgress = true
     }
 
     progress.onmouseleave = _ => {
-        mouseover = false
+        mouseOverProgress = false
     }
 
-    window.onmousemove = e => {
-        if (mouseover) {
+    progress.onmousemove = e => {
+        if (mouseOverProgress) {
             let newPos = e.pageX - progress.getBoundingClientRect().x
             newPos -= ball.getBoundingClientRect().width / 2
             ball.style.left = `${newPos}px`
@@ -68,7 +68,7 @@ const audio = document.getElementById("audio");
     const bPlay = audioPlayer.querySelector(".bPlay")
     const bForward = audioPlayer.querySelector(".bForward")
     const bHardForward = audioPlayer.querySelector(".bHardForward")
-    const bSettings = audioPlayer.querySelector(".bSettings")
+    const bVolume = audioPlayer.querySelector(".bSettings")
 
     const state = audioPlayer.querySelector(".state")
     bPlay.addEventListener("click", _ => {
@@ -126,4 +126,77 @@ const audio = document.getElementById("audio");
         state.innerText = "paused"
         decos.map(deco => { Array.from(deco).map(d => { d.style.animationDelay = "0s" }) })
     })
+
+    const audioControl = audioPlayer.querySelector(".audioControl")
+    const barBack = audioControl.querySelector(".bar-back")
+    const barTop = audioControl.querySelector(".bar-top")
+    const volumeBall = audioControl.querySelector(".ball")
+    let mouseOverVolume = false
+
+    audioControl.onmouseenter = _ => {
+        mouseOverVolume = true
+    }
+
+    audioControl.onmouseleave = _ => {
+        mouseOverVolume = false
+    }
+
+    audioControl.onmousemove = e => {
+        if (mouseOverVolume) {
+            let newPos = audioControl.getBoundingClientRect().top + window.pageYOffset + audioControl.getBoundingClientRect().height - e.pageY
+            newPos -= volumeBall.getBoundingClientRect().height / 2
+
+            let em = parseFloat(getComputedStyle(audioControl).fontSize)
+            newPos += 0.5 * em
+
+
+            if (newPos < 0) newPos = 0
+
+            let max = barBack.getBoundingClientRect().height - 0.5 * em
+            if (newPos > max) newPos = max
+            console.log("max", max, newPos)
+            volumeBall.style.bottom = `calc(${newPos}px - 0.25em)`
+        }
+    }
+
+    audioControl.onclick = e => {
+        let newPos = audioControl.getBoundingClientRect().top + window.pageYOffset + audioControl.getBoundingClientRect().height - e.pageY
+        let em = parseFloat(getComputedStyle(audioControl).fontSize)
+        newPos += 0.5 * em
+
+        if (newPos < 0) newPos = 0
+
+        let max = barBack.getBoundingClientRect().height - 0.5 * em
+        if (newPos > max) newPos = max
+
+        audio.volume = newPos / max
+    }
+
+    audio.onvolumechange = e => {
+        barTop.style.height = `calc(${e.target.volume * 100}% - 1.25em)`
+    }
+
+    let volButtonTriggered = false
+    bVolume.onclick = e => {
+        if (e.target != bVolume) return
+        volButtonTriggered = !volButtonTriggered
+        switch (volButtonTriggered) {
+            case true:
+                bVolume.classList.add("triggered")
+                break
+            case false:
+                bVolume.classList.remove("triggered")
+                break
+        }
+    }
+
+    audioPlayer.onclick = e => {
+        if (
+            volButtonTriggered &&
+            e.target != bVolume
+        ) {
+            volButtonTriggered = false
+            bVolume.classList.remove("triggered")
+        }
+    }
 }

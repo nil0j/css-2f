@@ -198,6 +198,16 @@ div#divider {
     padding-bottom: 0em;
 }
 
+#audio-player .bSettings.triggered {
+    background-color: var(--grey-basic);
+}
+
+#audio-player .bSettings.triggered .audioControl {
+    height: 7em;
+    padding: 1em;
+    padding-bottom: 0em;
+}
+
 #audio-player .bSettings .audioControl .bar-back {
     position: absolute;
     bottom: 0em;
