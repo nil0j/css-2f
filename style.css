@@ -17,6 +17,11 @@ body {
     margin: 0;
 }
 
+h1 {
+    margin: 3em 0;
+    font-size: 3em;
+}
+
 h2 {
     background-image: var(--fg-high);
     background-clip: text;
@@ -24,7 +29,7 @@ h2 {
 }
 
 div#divider {
-    margin: 16em 0;
+    margin: 32em 0;
 }
 
 
@@ -36,6 +41,15 @@ div#divider {
     margin: 0 auto;
     font-size: 1.4em;
     width: 26.4em;
+}
+
+
+/*-------------*/
+/* SVG section */
+/*-------------*/
+#svg-section svg {
+    display: block;
+    margin: 4em auto;
 }
 
 
