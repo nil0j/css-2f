@@ -1,17 +1,24 @@
-const svgSection = document.getElementById("svg-section")
-const svgNodes = Array.from(svgSection.querySelectorAll(".svg"))
-let carrouselX = svgSection.getBoundingClientRect().width
+const carrousel = document.getElementById("svg-section")
+const svgNodes = Array.from(carrousel.querySelectorAll(".svg"))
+let carrouselX = carrousel.getBoundingClientRect().width
 let time = 0
 
-window.addEventListener("resize", _ => {
-    carrouselX = svgSection.getBoundingClientRect().width
-    Svg.jump = svgNodes.length * 300 - carrouselX
-})
+function update() {
+    setInterval(() => {
+        svgs.map(svg => {
+            svg.update()
+        })
+
+            time++;
+    }, 10);
+}
+
 
 class Svg{
     static id = 0
     static jump = svgNodes.length * 300 - carrouselX
-    static speed = -2
+    static defaultSpeed = -2
+    static speed = this.defaultSpeed
 
     constructor (element) {
         this.element = element
@@ -23,7 +30,7 @@ class Svg{
 
     fixY() {
         let rect = this.element.getBoundingClientRect()
-        let maxH = svgSection.getBoundingClientRect().height
+        let maxH = carrousel.getBoundingClientRect().height
         if (rect.height < maxH) this.element.style.top = `${(maxH - rect.height) / 2}px`
     }
 
@@ -67,20 +74,26 @@ class Svg{
 
 const svgs = svgNodes.map(element => new Svg(element))
 
-function prepare() {
-    svgs.map(svg => {
-    })
-}
 
-function update() {
-    setInterval(() => {
-        svgs.map(svg => {
-            svg.update()
-        })
+window.addEventListener("resize", _ => {
+    carrouselX = carrousel.getBoundingClientRect().width
+    Svg.jump = svgNodes.length * 300 - carrouselX
+})
 
-            time++;
-    }, 10);
-}
+carrousel.addEventListener("mouseleave", _ => {
+    Svg.speed = Svg.defaultSpeed
+})
 
-prepare()
+carrousel.addEventListener("mousemove", e => {
+    let carrouselAxis = carrousel.getBoundingClientRect().x
+    let posX = e.pageX - carrouselAxis
+    let percentage = (posX * 100) / carrouselX
+
+    let unscaledSpeed = -Math.trunc(percentage / 10) + 4
+    console.log(unscaledSpeed)
+    if (Math.abs(unscaledSpeed) < 2) unscaledSpeed = 0
+    if (Math.abs(unscaledSpeed) > 3) unscaledSpeed += Math.abs(unscaledSpeed) / unscaledSpeed
+    Svg.speed = unscaledSpeed
+})
+
 update()
