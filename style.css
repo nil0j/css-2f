@@ -18,8 +18,8 @@ body {
 }
 
 h1 {
-    margin: 2em 0;
-    font-size: 3em;
+    margin: 1em 0;
+    font-size: 2.5em;
 }
 
 h2 {
@@ -68,6 +68,14 @@ div#divider {
     left: 0;
 
     display: inline-block;
+}
+
+@media only screen and (max-width: 700px) {
+    #svg-section {
+        width: 100vw;
+        border-left: none;
+        border-right: none;
+    }
 }
 
 
@@ -321,5 +329,30 @@ div#divider {
     #audio-player .cover .helper canvas {
         width: 60vw;
         height: 60vw;
+    }
+}
+
+
+
+/*---------------*/
+/* Video section */
+/*---------------*/
+#video {
+    width: 70vw;
+    max-width: 700px;
+    height: 50vw;
+    max-height: 500px;
+    margin: 0 auto;
+}
+
+#video video {
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+    #video {
+        width: 100vw;
+        height: 80vw;
     }
 }
