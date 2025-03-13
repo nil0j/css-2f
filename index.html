@@ -269,7 +269,30 @@
 <h1>Video player</h1>
 <p>Not implemented yet</p>
 <div id="video">
-<video src="static/trailer.mp4" controls></video>
+<video src="static/trailer.mp4"></video>
+    <div class="progress">
+        <div class="bar-back"></div>
+        <div class="bar-top">
+            <div class="ball"></div>
+        </div>
+    </div>
+<div class="controls">
+        <span class="bLoop">↻</span>
+        <span class="bHardBack">|◁</span>
+        <span class="bBack">◁◁</span>
+        <span class="bPlay">▷</span>
+        <span class="bForward">▷▷</span>
+        <span class="bHardForward">▷|</span>
+        <span class="bSettings">⇄<div class="helper">
+            <div class="videoControl">
+                <div class="bar-back"></div>
+                <div class="bar-top">
+                    <div class="ball"></div>
+                </div>
+            </div>
+        </div>
+        </span>
+</div>
 </div>
 
 <div id="divider"></div>
@@ -278,6 +301,7 @@
 <script src="svgs.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/foobar404/wave.js/dist/bundle.js"></script>
 <script src="audio.js"></script>
+<script src="video.js"></script>
 
 </body>
 </html>

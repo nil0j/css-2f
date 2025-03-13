@@ -223,13 +223,14 @@ div#divider {
     left: 0.1em;
 
     width: 1em;
-    padding: 0em;
+    padding-left: 1em;
+    padding-right: 1em;
 
     height: 0em;
     background-color: var(--bg-base);
     border-radius: 0.5em;
     transition: 0.2s ease-in-out;
-    transition-property: height;
+    transition-property: height, padding;
 }
 
 #audio-player .bSettings:hover .audioControl {
@@ -343,11 +344,17 @@ div#divider {
     height: 50vw;
     max-height: 500px;
     margin: 0 auto;
+    border-radius: 1em;
+    background-color: var(--bg-alt);
+    padding: 3em;
+    padding-bottom: 6em;
 }
 
 #video video {
     width: 100%;
     height: 100%;
+    margin: 0 auto;
+    border-radius: 1em;
 }
 
 @media only screen and (max-width: 700px) {
@@ -355,4 +362,226 @@ div#divider {
         width: 100vw;
         height: 80vw;
     }
+}
+
+#video .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#video .controls span {
+    width: 3em;
+    line-height: 3em;
+    border-radius: 0.6em;
+    transition: background-color 0.1s ease;
+}
+
+#video .controls span:hover {
+    background-color: var(--grey-basic);
+    cursor: pointer;
+}
+
+#video .progress {
+    position: relative;
+    width: 100%;
+    height: 1em;
+    margin: 0em auto;
+    margin-top: 1em;
+
+    cursor: pointer;
+}
+
+#video .progress div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    margin: 0.35em 0;
+    height:0.3em;
+    border-radius:0.25em;
+
+    transition: 0.2s ease;
+}
+
+#video .progress:hover div {
+    margin: 0.25em 0;
+    height: 0.5em;
+}
+
+#video .progress .bar-back {
+    width: 100%;
+    background-color: var(--grey-basic);
+}
+
+#video .progress .bar-top {
+    width: 0%;
+    background-image: var(--fg-high);
+}
+
+#video .progress .bar-top .ball {
+    position: absolute;
+    top: -0.1em;
+    left: 0;
+
+    background-image: var(--fg-high);
+    width: 0em;
+    height: 0em;
+    border-radius: 50%;
+    visibility: hidden;
+
+    transition-property: height, width, top;
+}
+
+#video .progress:hover .bar-top .ball {
+    top: -0.5em;
+    width: 1em;
+    height: 1em;
+    visibility: visible;
+}
+
+
+#video .progress .bar-front {
+    height:0.5em;
+    border-radius:0.25em;
+    background-color: var(--grey-basic);
+    width: 100%;
+}
+
+#video .bSettings .videoControl {
+    position: absolute;
+    bottom: 3em;
+    left: 0.1em;
+
+    width: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+
+    height: 0em;
+    background-color: var(--bg-base);
+    border-radius: 0.5em;
+    transition: 0.2s ease-in-out;
+    transition-property: height;
+}
+
+#video .bSettings:hover .videoControl {
+    height: 7em;
+    padding: 1em;
+    padding-bottom: 0em;
+}
+
+#video .triggered {
+    background-color: var(--grey-basic);
+}
+
+#video .bSettings.triggered .videoControl {
+    height: 7em;
+    padding: 1em;
+    padding-bottom: 0em;
+}
+
+#video .bSettings .videoControl .bar-back {
+    position: absolute;
+    bottom: 0em;
+    left: 0.1em;
+
+    width: 0.3em;
+    height: calc(100% - 1em);
+
+    margin: 1.25em;
+    margin-bottom:0em;
+
+    transition: 0.2s ease-in-out;
+    border-radius:0.25em;
+
+    background-color: var(--grey-basic);
+}
+
+#video .bSettings .videoControl:hover .bar-top,
+#video .bSettings .videoControl:hover .bar-back
+{
+    left: 0em;
+    width: 0.5em;
+}
+
+#video .bSettings .videoControl .bar-top {
+    position: absolute;
+    bottom: 0em;
+    left: 0.1em;
+
+    width: 0.3em;
+    height: calc(75% - 1em);
+
+    margin: 1.25em;
+    margin-bottom:0em;
+
+    transition: 0.2s ease-in-out;
+    border-radius:0.25em;
+
+    background-image: var(--fg-high);
+}
+
+#video .bSettings .videoControl .bar-top .ball {
+    position: absolute;
+    bottom: 0;
+    left: 0em;
+
+    background-image: var(--fg-high);
+    width: 0em;
+    height: 0em;
+    border-radius: 50%;
+    visibility: hidden;
+
+    transition: 0.1s ease-in-out;
+    transition-property: height, width, top;
+}
+
+#video .bSettings .videoControl:hover .bar-top .ball {
+    bottom: 0em;
+    left: -0.25em;
+    width: 1em;
+    height: 1em;
+    visibility: visible;
+}
+
+#video .progress .bar-back {
+    width: 100%;
+    background-color: var(--grey-basic);
+}
+
+#video .progress .bar-top {
+    width: 0%;
+    background-image: var(--fg-high);
+}
+
+#video .progress .bar-top .ball {
+    position: absolute;
+    top: -0.1em;
+    left: 0;
+
+    background-image: var(--fg-high);
+    width: 0em;
+    height: 0em;
+    border-radius: 50%;
+    visibility: hidden;
+
+    transition-property: height, width, top;
+}
+
+#video .progress:hover .bar-top .ball {
+    top: -0.5em;
+    width: 1em;
+    height: 1em;
+    visibility: visible;
+}
+
+#video .progress .bar-front {
+    height:0.5em;
+    border-radius:0.25em;
+    background-color: var(--grey-basic);
+    width: 100%;
+}
+
+#video .helper {
+    position: relative;
 }
