@@ -1,7 +1,11 @@
+const submitButton = document.getElementById("contact-form").querySelector(".submit")
 
 
-Swal.fire({
-    title: "Datos embiadoss - el barto",
-    icon: "success",
-    draggable: true
-});
+submitButton.onclick = e => {
+    e.preventDefault()
+    Swal.fire({
+        title: "Datos embiadoss - el barto",
+        icon: "success",
+        draggable: true
+    })
+}

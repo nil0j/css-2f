@@ -626,10 +626,18 @@ div#divider {
     text-align: left;
 }
 
-#contact-form input {
+#contact-form input, #contact-form textarea {
     background-color: var(--bg-base);
     border: none;
     border-radius: 0.5em;
     padding: 0.5em;
     color: var(--fg);
+    width: 100%;
+}
+
+#contact-form .submit {
+    width: inherit;
+    cursor: pointer;
+    background-image: var(--fg-high);
+    color: var(--bg-base);
 }
