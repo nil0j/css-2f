@@ -52,6 +52,7 @@ const video = videoPlayer.getElementsByTagName("video")[0];
     const bForward = videoPlayer.querySelector(".bForward")
     const bHardForward = videoPlayer.querySelector(".bHardForward")
     const bVolume = videoPlayer.querySelector(".bSettings")
+    const fullscreen = videoPlayer.querySelector(".fullscreen")
 
     const state = videoPlayer.querySelector(".state")
     bPlay.addEventListener("click", _ => {
@@ -177,5 +178,13 @@ const video = videoPlayer.getElementsByTagName("video")[0];
             volButtonTriggered = false
             bVolume.classList.remove("triggered")
         }
+    }
+
+    fullscreen.onclick = e => {
+        videoPlayer.requestFullscreen()
+    }
+
+    video.onclick = e => {
+        video.paused ? video.play() : video.pause()
     }
 }
