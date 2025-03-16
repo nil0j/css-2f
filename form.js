@@ -1,7 +1,7 @@
-const submitButton = document.getElementById("contact-form").querySelector(".submit")
+const form = document.getElementsByTagName("form")[0]
 
 
-submitButton.onclick = e => {
+form.onsubmit = e => {
     e.preventDefault()
     Swal.fire({
         title: "Datos embiadoss - el barto",
